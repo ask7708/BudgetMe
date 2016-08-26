@@ -1,0 +1,13 @@
+.navbar-default{
+    
+    background-color: black;
+}
+
+.navbar-brand{
+    color:red;
+}
+
+.table>tbody>tr>td {
+    vertical-align: middle;
+    display: table-cell; 
+}
