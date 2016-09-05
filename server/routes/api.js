@@ -96,6 +96,23 @@ router.get("/purchaseHistory", function(req,res){
     
 });
 
+router.get("/monthlyPurchaseHistory", function(req,res){
+    
+   purchaseTracker.find({
+       "dateMade": {
+           $lte: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0, 23, 59, 59),
+           $gt: new Date(new Date().getFullYear(), new Date().getMonth(), 0, 23, 59, 59)
+       },
+       
+       _creator: req.user._id
+       
+   }).exec(function(err, purchases){
+       if(err) return (err);
+            res.json(purchases) 
+   });
+    
+});
+
 router.post("/deletePurchase",function(req,res){
    
    

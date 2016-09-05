@@ -68,6 +68,23 @@ function($scope, $location, AuthService, $http){
             console.log(e);
         });
         
+    $http.get("/user/monthlyPurchaseHistory")
+        .success(function(data){
+            $scope.monthlyPurchases = data
+      
+            console.log(JSON.stringify($scope.monthlyPurchases[0].title));
+            
+                var total = 0;
+                for(var i = 0; i<$scope.monthlyPurchases.length; i++){
+                    total += ($scope.monthlyPurchases[i].amountSpent)
+                }
+                $scope.monthlyTotal = parseInt(total);
+                console.log(parseInt($scope.monthlyTotal));
+        })
+        .error(function(e){
+            console.log(e);
+        });
+        
     $scope.purchaseTotal = function(){
         var total = 0;
         for(var i = 0; i < $scope.userPurchases.length; i++){
